@@ -10,7 +10,7 @@ const videoHDExtract = /(?<=label: "SD", file: ").+?(?=")/;
 /**
  * Extraí os dados do vídeo de uma página do animesyabu.
  * @param {string} url Pode ser a url do vídeo ou o id do vídeo.
- * @returns {{imageUrl?: string, hd?: string, sd?: string}}
+ * @returns {Promise<{imageUrl?: string, hd?: string, sd?: string}>}
  */
 export default async function videoDetails(url) {
     try {
@@ -24,19 +24,26 @@ export default async function videoDetails(url) {
             }
         }
 
-        const webData = await fetch(url);
+        const webData = await fetch(url)
+        if (webData.url !== url) {
+            return null;
+        } 
 
-        const exctractedObj = videoObjExtract.exec(webData)[0];
+        const rawText = await webData.text();
+
+        const exctractedObj = videoObjExtract.exec(rawText)[0];
         
         if (exctractedObj.includes("image")) {
             result.imageUrl = imageExtract.exec(exctractedObj)[0];
         }
         if (exctractedObj.includes("SD")) {
-            result.videoSD = videoSDExtract.exec(exctractedObj)[0];
+            result.sd = videoSDExtract.exec(exctractedObj)[0];
         }
         if (exctractedObj.includes("HD")) {
-            result.videoHD = videoHDExtract.exec(exctractedObj)[0];
+            result.hd = videoHDExtract.exec(exctractedObj)[0];
         }
+
+        return result;
     } catch (error) {
         console.error(error);
         throw error;
