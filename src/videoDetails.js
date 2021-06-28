@@ -1,12 +1,11 @@
 import fetch from "node-fetch";
-
-const urlValidate = /https:\/\/animeyabu\.com\/play\/(\d+)\/$/;
-const idValidate  = /^(\d+)$/;
-const videoObjExtract = /(?<=playlist:\[{)(.*)(?=}])/is;
-const imageExtract = /(?<=image: ")(.*)(?=")/;
-const videoSDExtract = /(?<=label: "HD", file: ").+?(?=")/;
-const videoHDExtract = /(?<=label: "SD", file: ").+?(?=")/;
-
+import {
+    idValidate,
+    videoObjExtract,
+    imageExtract,
+    videoSDExtract,
+    videoHDExtract,
+} from "./rexpressions";
 /**
  * Extraí os dados do vídeo de uma página do animesyabu.
  * @param {string} url Pode ser a url do vídeo ou o id do vídeo.

@@ -1,13 +1,11 @@
 import fetch from "node-fetch";
-import { JSDOM } from "jsdom";
+import {
+  latestUpdated,
+  videoThumb,
+  videoThumbInfo,
+  customTag,
+ } from "./rexpressions";
 
-const regexs = {
-  latestUpdated:
-    /(?<=<div class="loop-content phpvibe-video-list miau">).+?(?=<h3 class="loop-heading">)/,
-  videoThumb: /(?<=<div class="video-thumb( )?">).+?(?=<\/div>)/g,
-  videoThumbInfo: /(?<=<a).+?(?=\/><span class="vertical-align">)/g,
-  customTag: (param) => new RegExp(`(?<=${param}=").+?(?=")`),
-};
 
 /**
  * Para cada resultado da expressão regular, será chamada uma função passando o parâmetro com o valor encontrado e então retornará um array com o resultado de todas as chamadas.
@@ -32,7 +30,7 @@ const executeForResult = (rgx, value, func) => {
  * Pega as informações sobre os últimos animes atualizados
  * @returns {Promise<{{title: string, thumbnail: string, link: string}}>}
  */
-export default async function latestUpdated() {
+export default async function getLatestUpdated() {
   try {
     const result = [];
 
@@ -40,7 +38,7 @@ export default async function latestUpdated() {
       result.text()
     );
 
-    const extractedData = regexs.latestUpdated.exec(websiteData);
+    const extractedData = latestUpdated.exec(websiteData);
 
     if (!extractedData || !extractedData.length) {
       throw new Error(
@@ -49,18 +47,18 @@ export default async function latestUpdated() {
     }
 
     const thumbsArr = executeForResult(
-      regexs.videoThumb,
+      videoThumb,
       extractedData[0],
       (matched) => {
-        return regexs.videoThumbInfo.exec(matched);
+        return videoThumbInfo.exec(matched);
       }
     );
 
     for (let i = 0; i < thumbsArr.length; i++) {
       const thumb = thumbsArr[i];
-      const title = regexs.customTag("title").exec(thumb)[0];
-      const thumbnail = `http://animeyabu.com/${regexs.customTag("src").exec(thumb)[0]}`;
-      const link = regexs.customTag("href").exec(thumb)[0];
+      const title = customTag("title").exec(thumb)[0];
+      const thumbnail = `http://animeyabu.com/${customTag("src").exec(thumb)[0]}`;
+      const link = customTag("href").exec(thumb)[0];
       result.push({
         title,
         thumbnail,
