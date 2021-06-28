@@ -1,5 +1,4 @@
 import videoDetails from "./videoDetails";
+import latestUpdated from "./latestUpdated";
 
-module.exports = {
-    videoDetails,
-}
+export { videoDetails, latestUpdated }
