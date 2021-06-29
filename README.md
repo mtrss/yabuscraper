@@ -1,20 +1,32 @@
 # Yabu Scraper
-Module with functions to scrape content from animeyabu.com, made to study regular expressions.
-- Only uses `node-fetch` and regexps to scrape content.
-### Simple example of usage
+> **⚠️ Esse é um módulo ECMAScript! Não é possível utiiza-lo em projetos CommonJS. Para mais informações, acesse a [documentação do node.js](https://nodejs.org/api/esm.html)**
+---
+Simples biblioteca com funções para extrair informações dados do animeyabu, desenvolvi esse projeto no meu tempo livre para treinar expressões regulares.
+### Exemplo de impementação
 ```js
-import { search } from "yabu-scrapper";
+import { search } from "yabu-scraper"
 
+// Irá pesquisar Naruto e mostrar o título de todos os resultados.
+async function printEveryTitle() {
+    try {
+        const results = await search("Naruto");
+        for (const result of results) {
+            console.log(result.title);
+        }
+    } catch (err) {
+        console.log(err);
+    }
+}
 
-search("Naruto")
-    .then(console.log)
-    .catch(console.err)
+printEveryTitle();
 ```
-### Installation
-- With npm `npm install yabu-scraper`
-- Wtih yarn `yarn add yabu-scraper`
+### Instalação
+- Utilizando npm `npm install yabu-scraper`
+- Uitilizando o melhor gerenciador de pacotes `yarn add yabu-scraper`
 
-### To-do
-- [ ] Implement typings with TypeScript
-- [ ] Write a function to allow more advanced searchs (filter by tags, number of episodes, etc)
-- [ ] Write a better documentation
+### Planos
+- [ ] Implementar uma tipagem melhor com TypeScript
+- [ ] Implementar uma função de busca melhor, que permite a filtragem de resultados pelas opções do site.
+- [ ] Implementar uma função para obter os episódios de um anime.
+----
+Feito com :heart:, expressões regulares e JavaScript
