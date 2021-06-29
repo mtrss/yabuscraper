@@ -1,8 +1,8 @@
 node_modules/
 docs/
-__tests__
+.github/
+__tests__/
 .eslintrc.js
 .gitignore
 yarn-error.log
 yarn.lock
-.github

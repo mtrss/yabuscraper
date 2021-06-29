@@ -10,8 +10,7 @@ import {
   videoThumb,
   videoThumbInfo,
   customTag,
- } from "./rexpressions.js";
-
+} from "./rexpressions.js";
 
 const executeForResult = (rgx, value, func) => {
   const results = [];
@@ -33,43 +32,38 @@ const executeForResult = (rgx, value, func) => {
  */
 
 export default async function getLatestUpdated() {
-  try {
-    const result = [];
+  const result = [];
 
-    const websiteData = await fetch("https://animeyabu.com/").then((result) =>
-      result.text()
+  const websiteData = await fetch("https://animeyabu.com/").then((result) =>
+    result.text()
+  );
+
+  const extractedData = latestUpdated.exec(websiteData);
+
+  if (!extractedData || !extractedData.length) {
+    throw new Error(
+      "Something went wrong while scraping content from the home page maybe the page layout has changed."
     );
-
-    const extractedData = latestUpdated.exec(websiteData);
-
-    if (!extractedData || !extractedData.length) {
-      throw new Error(
-        "Something went wrong while scraping content from the home page maybe the page layout has changed."
-      );
-    }
-
-    const thumbsArr = executeForResult(
-      videoThumb,
-      extractedData[0],
-      (matched) => {
-        return videoThumbInfo.exec(matched);
-      }
-    );
-
-    for (let i = 0; i < thumbsArr.length; i++) {
-      const thumb = thumbsArr[i];
-      const title = customTag("title").exec(thumb)[0];
-      const thumbnail = `http://animeyabu.com/${customTag("src").exec(thumb)[0]}`;
-      const link = customTag("href").exec(thumb)[0];
-      result.push({
-        title,
-        thumbnail,
-        link,
-      });
-    }
-
-    return result;
-  } catch (error) {
-    console.log(error);
   }
+
+  const thumbsArr = executeForResult(
+    videoThumb,
+    extractedData[0],
+    (matched) => {
+      return videoThumbInfo.exec(matched);
+    }
+  );
+
+  for (let i = 0; i < thumbsArr.length; i++) {
+    const thumb = thumbsArr[i];
+    const title = customTag("title").exec(thumb)[0];
+    const thumbnail = `http://animeyabu.com/${customTag("src").exec(thumb)[0]}`;
+    const link = customTag("href").exec(thumb)[0];
+    result.push({
+      title,
+      thumbnail,
+      link,
+    });
+  }
+  return result;
 }
