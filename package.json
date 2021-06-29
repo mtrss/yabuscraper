@@ -1,6 +1,6 @@
 {
   "name": "yabu-scraper",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Javascript module to scrape content from animeyabu.com",
   "main": "./src/index.js",
   "type": "module",
