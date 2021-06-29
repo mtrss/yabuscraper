@@ -27,6 +27,6 @@ printEveryTitle();
 ### Planos
 - [ ] Implementar uma tipagem melhor com TypeScript
 - [ ] Implementar uma função de busca melhor, que permite a filtragem de resultados pelas opções do site.
-- [ ] Implementar uma função para obter os episódios de um anime.
+- [x] ~~Implementar uma função para obter os episódios de um anime.~~ 
 ----
 Feito com :heart:, expressões regulares e JavaScript
