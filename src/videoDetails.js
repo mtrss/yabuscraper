@@ -1,3 +1,10 @@
+/**
+ * Extrai informações relacionadas a vídeos na plataforma
+ * @function videoDetails
+ * @param {string} url Pode ser a url do vídeo ou o id do vídeo.
+ * @returns {Promise<Details>}
+ */
+
 import fetch from "node-fetch";
 import {
     idValidate,
@@ -7,10 +14,18 @@ import {
     videoHDExtract,
     urlValidate,
 } from "./rexpressions";
+
+/**
+ * @typedef Details
+ * @property {string} imageUrl A imagem da thumbnail do vídeo
+ * @property {string} hd O link para o vídeo em resolução HD
+ * @property {string} sd O link para o vídeo em resolução SD
+ */
+
 /**
  * Extraí os dados do vídeo de uma página do animesyabu.
  * @param {string} url Pode ser a url do vídeo ou o id do vídeo.
- * @returns {Promise<{imageUrl?: string, hd?: string, sd?: string}>}
+ * @returns {Promise<Details>}
  */
 export default async function videoDetails(url) {
     try {

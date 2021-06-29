@@ -1,11 +1,25 @@
+/**
+ * Extrai informaçõe relacionadas a pesquisas na plataforma
+ * @function search
+ * @param {string} animeName O nome do anime a ser pesquisado
+ * @returns {Promise<Array<SearchResult>>}
+ */
+
 import fetch from "node-fetch";
 import { searchResult, searchVideoInfo, customTag , videoTags } from "./rexpressions.js";
 
 /**
- * Procura por animes na plataforma
- * @param {string} animeName O nome do anime a ser pesquisado
- * @param {boolean} disableWarn Desativa o aviso relacionado ao tamanho do objeto
- * @returns {Promise<{title: string, tags: string[], thumbnail: string, url: string}[]>}
+ * @typedef SearchResult
+ * @property {string} title O título do anime
+ * @property {string[]} tags As categorias da qual ele pertence
+ * @property {string} url O link para a página do anime
+ * @property {string} thumbnail Url para a imagem do anime
+ */
+
+/**
+ * Efetua a pesquisa de um anime
+ * @param {string} animeName O nome do anime
+ * @returns {Promise<Array<SearchResult>>} O resultado da pesquisa
  */
 export default async function searchAnime(animeName = "") {
   try {
@@ -37,6 +51,7 @@ export default async function searchAnime(animeName = "") {
 
     return searchResults;
   } catch (error) {
-    console.log(error);
+    console.error(error);
+    throw error;
   }
 }

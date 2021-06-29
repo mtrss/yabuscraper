@@ -1,3 +1,9 @@
+/**
+ * Extrai informaçõe sobre os últimos episódios adicionados a plataforma
+ * @function getLatestUpdated
+ * @returns {Promise<Array<UpdatedDetails>>}
+ */
+
 import fetch from "node-fetch";
 import {
   latestUpdated,
@@ -7,13 +13,6 @@ import {
  } from "./rexpressions";
 
 
-/**
- * Para cada resultado da expressão regular, será chamada uma função passando o parâmetro com o valor encontrado e então retornará um array com o resultado de todas as chamadas.
- * @param {RegExp} rgx A expressão regular a ser usada
- * @param {string} value O valor a ser explorado pela expressão regular
- * @param {function} func A função que será chamada e deve retornar um string
- * @returns {string[]} Array com os resultados de cada chamada feita.
- */
 const executeForResult = (rgx, value, func) => {
   const results = [];
   let found;
@@ -27,9 +26,12 @@ const executeForResult = (rgx, value, func) => {
 };
 
 /**
- * Pega as informações sobre os últimos animes atualizados
- * @returns {Promise<{{title: string, thumbnail: string, link: string}}>}
+ * @typedef UpdatedDetails
+ * @property {string} title O título do episódio adicionado
+ * @property {string} thumbnail O link para a thumbnail do episódio
+ * @property {string} link O link para o episódio
  */
+
 export default async function getLatestUpdated() {
   try {
     const result = [];
