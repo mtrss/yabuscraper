@@ -5,7 +5,8 @@
   "main": ".src/index.js",
   "type": "module",
   "scripts": {
-    "test": "node --experimental-vm-modules node_modules/.bin/jest"
+    "test": "node --experimental-vm-modules node_modules/.bin/jest",
+    "doc": "./node_modules/jsdoc/jsdoc.js src -d docs"
   },
   "repository": {
     "type": "git",
