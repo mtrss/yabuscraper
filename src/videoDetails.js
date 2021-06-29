@@ -13,7 +13,7 @@ import {
     videoSDExtract,
     videoHDExtract,
     urlValidate,
-} from "./rexpressions";
+} from "./rexpressions.js";
 
 /**
  * @typedef Details

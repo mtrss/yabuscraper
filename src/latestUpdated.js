@@ -10,7 +10,7 @@ import {
   videoThumb,
   videoThumbInfo,
   customTag,
- } from "./rexpressions";
+ } from "./rexpressions.js";
 
 
 const executeForResult = (rgx, value, func) => {

@@ -1,8 +1,8 @@
-import videoDetails from "./videoDetails";
-import latestUpdated from "./latestUpdated";
-import search from "./search";
+import videoDetails from "./videoDetails.js";
+import latestUpdated from "./latestUpdated.js";
+import search from "./search.js";
 
-export default {
+export {
     videoDetails,
     latestUpdated,
     search,
