@@ -1,5 +1,5 @@
 # Yabu Scraper
-Module with functions to scrape content from animeyabu.com, made with to study regular expressions.
+Module with functions to scrape content from animeyabu.com, made to study regular expressions.
 - Only uses `node-fetch` and regexps to scrape content.
 ### Simple example of usage
 ```js
