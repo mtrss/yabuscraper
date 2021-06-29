@@ -5,6 +5,7 @@ import {
     imageExtract,
     videoSDExtract,
     videoHDExtract,
+    urlValidate,
 } from "./rexpressions";
 /**
  * Extraí os dados do vídeo de uma página do animesyabu.
