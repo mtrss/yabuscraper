@@ -5,7 +5,8 @@
   "main": ".src/index.js",
   "type": "module",
   "scripts": {
-    "test": "node --experimental-vm-modules node_modules/.bin/jest"
+    "test": "node --experimental-vm-modules node_modules/.bin/jest",
+    "doc": "./node_modules/jsdoc/jsdoc.js src -d docs"
   },
   "repository": {
     "type": "git",
@@ -24,7 +25,8 @@
   "homepage": "https://github.com/yuyura/yabu-scraper#readme",
   "devDependencies": {
     "eslint": "^7.29.0",
-    "jest": "^27.0.5"
+    "jest": "^27.0.5",
+    "jsdoc": "^3.6.7"
   },
   "dependencies": {
     "node-fetch": "^2.6.1"
