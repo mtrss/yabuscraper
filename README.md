@@ -1,7 +1,9 @@
 # Yabu Scraper
 > **⚠️ Esse é um módulo ECMAScript! Não é possível utiiza-lo em projetos CommonJS. Para mais informações, acesse a [documentação do node.js](https://nodejs.org/api/esm.html)**
 ---
-Simples biblioteca com funções para extrair informações dados do animeyabu, desenvolvi esse projeto no meu tempo livre para treinar expressões regulares.
+Simples biblioteca com funções para extrair informações dados do animeyabu, desenvolvi esse projeto no meu tempo livre para treinar expressões regulares. <br />
+![npm](https://img.shields.io/npm/dt/yabu-scraper?style=for-the-badge)
+
 ### Exemplo de impementação
 ```js
 import { search } from "yabu-scraper"
