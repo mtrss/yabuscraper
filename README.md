@@ -1,4 +1,7 @@
-# Yabu Scraper
+# ❗ Desatualizado/Abandonado
+**O código e as dependências desse projeto não são verificadas há meses, e o projeto provavelmente deixou de funcionar com a atualização do layout do AnimeYabu, decidi mantê-lo como read-only para fins de verificação ou para caso alguém queira utizar alguma parte do código.**
+
+## Yabu Scraper
 > **⚠️ Esse é um módulo ECMAScript! Não é possível utiiza-lo em projetos CommonJS. Para mais informações, acesse a [documentação do node.js](https://nodejs.org/api/esm.html)**
 ---
 Simples biblioteca com funções para extrair informações dados do animeyabu, desenvolvi esse projeto no meu tempo livre para treinar expressões regulares. <br />
